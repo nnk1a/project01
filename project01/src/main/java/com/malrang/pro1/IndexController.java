@@ -9,4 +9,19 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
+	
+	@GetMapping("/board2")
+	public String board2() {
+		return "board2";
+	}
+	
+	@GetMapping("/mooni")
+	public String mooni() {
+		return "mooni";
+	}
+	
+	@GetMapping("/notice")
+	public String notice() {
+		return "notice";
+	}
 }

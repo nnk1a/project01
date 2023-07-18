@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Gothic A1', sans-serif;
+}
+nav{
+	top: 0;
+	width: 100%;
+	height: 50px;
+	background-color: #FFF8E1;
+	overflow: hidden;
+	text-align: center;
+}
+nav ul{
+	margin: 0;
+	padding: 0;
+	display: inline;
+	display: inline-block;
+}
+nav li{
+	list-style: none;
+	min-width: 50px;
+	float: left;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+}
+nav li:hover{
+	font-weight: bolder;
+	cursor: pointer;
+}

@@ -6,15 +6,17 @@
 <meta charset="UTF-8">
 <title>board</title>
 <link rel="stylesheet" href="./css/board.css">
+<link rel="stylesheet" href="./css/menu.css">
 </head>
 <body>
-	<h1>보드</h1>
-	<img alt="" src="./img/image.png">
+<%@ include file="menu.jsp" %>
+	<div>
+	<h1>게시판</h1>
 	<table>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th>글쓴이</th>
+			<th>작성자</th>
 			<th>작성일자</th>
 			<th>좋아요</th>
 		</tr>
@@ -27,6 +29,8 @@
 			<td class="td1">${row.blike }</td>
 		</tr>
 		</c:forEach>
-	</table>
+	</table>	
+	<button onclick="location.href='./write'">작성하기</button>
+	</div>
 </body>
 </html>

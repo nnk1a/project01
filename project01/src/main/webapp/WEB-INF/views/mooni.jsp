@@ -3,9 +3,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>404</title>
+<title>Insert title here</title>
+<link rel="stylesheet" href="./css/menu.css">
 </head>
 <body>
-	<img alt="error" src="./img/error.png">
+<%@ include file="menu.jsp" %>
+
 </body>
 </html>

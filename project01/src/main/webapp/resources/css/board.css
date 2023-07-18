@@ -3,19 +3,25 @@
 body{
 	font-family: 'Gothic A1', sans-serif;
 }
+div{
+	margin: 0 auto;
+	width: 800px;
+	height: 500px;
+}
 table{
 	margin: 0 auto;
 	width: 800px;
 	height: 500px;
-	border-collapse: collapse;	
+	border-collapse: collapse;
 }
 th{
-	background-color: #EFEBE9;
+	background-color: #FFF8E1;
 	height: 40px;
 }
 td{
 	text-align: center;
 	border-bottom: 1px solid #757575;
+	cursor: pointer;
 }
 #td1{
 	width: 10%
@@ -28,4 +34,19 @@ td{
 }
 tr:hover{
 	background-color: #FAFAFA;
-}@charset "UTF-8";
+}
+h1{
+	text-align: center;
+}
+button{
+	margin: 10px;
+	padding: 10px;
+	border: 0;
+	outline: none;
+	float: right;
+	cursor: pointer;
+	border-radius: 20px;
+	font-weight: bold;
+	font-family: 'Gothic A1', sans-serif;
+	background-color: #FFF8E1;
+}

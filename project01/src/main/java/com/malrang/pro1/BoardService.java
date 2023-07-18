@@ -22,4 +22,8 @@ public class BoardService {
 	public BoardDTO detail(String bno) {
 		return boardDAO.detail(bno);
 	}
+
+	public void write(BoardDTO dto) {
+		boardDAO.write(dto);
+	}
 }
