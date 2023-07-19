@@ -20,28 +20,53 @@ body{
 }
 .write{
 	width: 100%;
-	height: 50px;
-	line-height: 50px;
+	height: 40px;
+	line-height: 40px;
 	background-color: #FFF8E1;
 }
 .bwrite, .blike{
 	width: 50%;
-	height: 50px;
+	height: 30px;
 	float: left;
 }
 .blike{
 	text-align: right;
 }
-.date{
+.date-ip{
 	width: 100%;
-	height: 30px;
-	line-height: 30px;
+	height: 50px;
+	line-height: 50px;
 	background-color: #FFF8E1;
+}
+.bdate, .bip{
+	width: 50%;
+	height: 50px;
+	float: left;
+}
+.bip{
+	text-align: right;
 }
 .bcontent{
 	width: 100%;
 	height: 500px;
-	padding: 10px 10px;
+	padding: 5px 10px;
 	border: 1px solid #757575;
 	box-sizing: border-box;
+}
+.img{
+	margin: 10px 5px;
+}
+.like-img{
+	margin-top: 6px;
+	margin-right: 2px;
+}
+button{
+	padding: 5px;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	border-radius: 20px;
+	font-weight: bold;
+	background-color: #FFF8E1;
+	font-family: 'Gothic A1', sans-serif;
 }

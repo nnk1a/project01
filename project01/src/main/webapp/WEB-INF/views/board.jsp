@@ -29,7 +29,7 @@
 			<td class="td1">${row.blike }</td>
 		</tr>
 		</c:forEach>
-	</table>	
+	</table>
 	<button onclick="location.href='./write'">작성하기</button>
 	</div>
 </body>

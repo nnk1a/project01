@@ -10,6 +10,9 @@
 		SELECT * FROM board WHERE bno = #{bno}
 	</select>
 	<insert id="write" parameterType="boardDTO">
-		INSERT INTO board(btitle, bcontent, bwrite) VALUES (#{btitle}, #{bcontent}, #{bwrite})
+		INSERT INTO board(btitle, bcontent, bip, bwrite) VALUES (#{btitle}, #{bcontent}, #{bip}, #{bwrite})
 	</insert>
+	<delete id="delete" parameterType="boardDTO">
+		DELETE FROM board WHERE bno = #{bno}
+	</delete>
 </mapper>
