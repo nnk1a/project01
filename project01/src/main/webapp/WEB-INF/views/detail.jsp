@@ -7,6 +7,13 @@
 <link rel="stylesheet" href="./css/detail.css">
 <link rel="stylesheet" href="./css/menu.css">
 <script type="text/javascript">
+function edit() {
+	if(confirm("수정하시겠습니까?")){
+		location.href="./edit?bno=${dto.bno }";
+	}
+}
+</script>
+<script type="text/javascript">
 function del() {
 	let chk = confirm("삭제하시겠습니까?");
 	if(chk){
@@ -18,8 +25,7 @@ function del() {
 <body>
 <%@ include file="menu.jsp" %>
 	<div class="content">
-		<div class="title">${dto.btitle }
-		</div>
+		<div class="title">${dto.btitle }</div>
 		<div class="write">
 			<div class="bwrite">작성자 : ${dto.bwrite }</div>
 			<div class="blike">
@@ -31,8 +37,9 @@ function del() {
 		</div>
 		<div class="bcontent">${dto.bcontent }</div>
 		<div class="img">
-			<img alt="edit.png" src="./img/edit.png">&nbsp;
-			<img alt="delete.png" src="./img/delete.png" onclick="del()">
+			<img alt="" src="./img/edit.png" onclick="edit()">&nbsp;
+			<img alt="" src="./img/delete.png" onclick="del()">
+			<div class="bt"><button class="btn" onclick="location.href='./board'">목록으로</button></div>
 		</div>	
 	</div>
 </body>

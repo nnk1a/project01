@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>write</title>
-<link rel="stylesheet" href="./css/write.css">
+<title>수정</title>
 <link rel="stylesheet" href="./css/menu.css">
+<link rel="stylesheet" href="./css/edit.css">
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -18,11 +18,12 @@
 <body>
 <%@ include file="menu.jsp" %>
 	<div class="write-div">
-		<h1>글쓰기</h1>
-		<form action="./write" method="post">
-			<input type="text" name="title">
-			<textarea id="summernote" name="content"></textarea>
-			<button class="btn2" type="submit">글쓰기</button>
+		<h1>수정하기</h1>
+		<form action="./edit" method="post">
+			<input type="text" name="btitle" value="${dto.btitle }">
+			<textarea id="summernote" name="bcontent">${dto.bcontent }</textarea>
+			<button class="btn2" type="submit">작성완료</button>
+			<input type="hidden" name="bno" value="${dto.bno }">
 		</form>
 	</div>
 	<script type="text/javascript">

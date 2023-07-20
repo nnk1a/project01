@@ -20,7 +20,7 @@ public class BoardDAO {
 		return sqlSession.selectList("board.boardList");
 	}
 	
-	public BoardDTO detail(String bno) {
+	public BoardDTO detail(int bno) {
 		return sqlSession.selectOne("board.detail", bno);
 	}
 
@@ -30,6 +30,10 @@ public class BoardDAO {
 
 	public void delete(BoardDTO dto) {
 		sqlSession.delete("board.delete", dto);
+	}
+
+	public void edit(BoardDTO dto) {
+		sqlSession.update("board.edit", dto);
 	}
 
 }

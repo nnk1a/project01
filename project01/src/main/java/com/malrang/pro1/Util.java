@@ -8,6 +8,23 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Component //객체
 public class Util {
+	//문자열이 들어오면 숫자로 변경하기
+	public int strTOInt(String str) {
+		//숫자로 바꿀 수 있는 경우에만 숫자로
+		int result = 0;
+		try {
+			result = Integer.parseInt(str);
+		} catch (Exception e) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < str.length(); i++) {
+				if (Character.isDigit(str.charAt(i))) {
+					sb.append(str.charAt(i));
+				}
+			}
+			result = Integer.parseInt(sb.toString());
+		}
+		return result;
+	}
 	public String removeBrackets(String str) {
 		return str.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 	}
