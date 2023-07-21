@@ -3,13 +3,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>말랭</title>
 <link rel="stylesheet" href="./css/index.css">
 <link rel="stylesheet" href="./css/menu.css">
 </head>
 <body>
 <%@ include file="menu.jsp" %>
-	<h1>메인 화면</h1>
-	<button onclick="location.href='./board'">게시판 가기</button>
+	<div>
+	<h1></h1>
+	</div>
 </body>
 </html>

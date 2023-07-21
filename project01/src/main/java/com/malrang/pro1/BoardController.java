@@ -1,7 +1,5 @@
 package com.malrang.pro1;
 
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -81,10 +79,5 @@ public class BoardController {
 	public String edit(BoardDTO dto) {
 		boardService.edit(dto);
 		return "redirect:detail?bno=" + dto.getBno();		
-	}
-	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
 	}
 }

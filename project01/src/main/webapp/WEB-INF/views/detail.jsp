@@ -42,5 +42,13 @@ function del() {
 			<div class="bt"><button class="btn" onclick="location.href='./board'">목록으로</button></div>
 		</div>	
 	</div>
+	<br><br>
+	<div class="line"></div>
+	<div class="div-comment">
+		<div class="comment">
+			<input class="reply" type="text" placeholder="댓글을 입력하세요.">
+			<button class="input-bt">입력하기</button>
+		</div>
+	</div>
 </body>
 </html>

@@ -34,6 +34,7 @@ td{
 }
 tr:hover{
 	background-color: #FAFAFA;
+	font-weight: bold;
 }
 h1{
 	text-align: center;

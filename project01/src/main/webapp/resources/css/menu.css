@@ -31,3 +31,11 @@ nav li:hover{
 	font-weight: bolder;
 	cursor: pointer;
 }
+.name{
+	width: 200px;
+	text-align: right;
+	font-size: small;
+}
+.login{
+	text-align: right;	
+}
