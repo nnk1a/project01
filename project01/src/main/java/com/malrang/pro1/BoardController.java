@@ -2,6 +2,7 @@ package com.malrang.pro1;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,31 +30,40 @@ public class BoardController {
 
 	@GetMapping("/detail")
 	public String detail(HttpServletRequest request, Model model) {
-		//String bno = request.getParameter("bno");
-		int bno = util.strTOInt(request.getParameter("bno"));
-		BoardDTO dto = boardService.detail(bno);
-		model.addAttribute("dto", dto);
+		BoardDTO dto = new BoardDTO();
+		dto.setBno(util.strTOInt(request.getParameter("bno")));
+		BoardDTO result = boardService.detail(dto);
+		model.addAttribute("dto", result);
 		return "detail";
 	}
 
 	@GetMapping("/write")
-	public String write() {
-		return "write";
+	public String write(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("mname") != null) {
+			return "write";			
+		} else {
+			return "redirect:/login";
+		}
 	}
 
 	@PostMapping("/write")
-	public String write(HttpServletRequest request) {
-		// 사용자가 입력한 데이터 변수에 담기
-		BoardDTO dto = new BoardDTO();
-		dto.setBtitle(request.getParameter("title"));
-		dto.setBcontent(request.getParameter("content"));
-		
-		dto.setBwrite("말랭");// 임시로 작성
+	public String write2(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("mid") != null) {
+			BoardDTO dto = new BoardDTO();
+			dto.setBtitle(request.getParameter("title"));
+			dto.setBcontent(request.getParameter("content"));
+			dto.setM_id((String) session.getAttribute("mid"));
+			dto.setM_name((String) session.getAttribute("mname"));
 
-		// Service → DAO → mybatis → DB로 보내서 저장하기
-		boardService.write(dto);
+			// Service → DAO → mybatis → DB로 보내서 저장하기
+			boardService.write(dto);
 
-		return "redirect:board";
+			return "redirect:board";
+		} else {
+			return "redirect:/login";
+		}		
 	}
 	
 	@GetMapping("/delete")
@@ -69,9 +79,14 @@ public class BoardController {
 	
 	@GetMapping("/edit")
 	public ModelAndView edit(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView("edit");
-		BoardDTO dto = boardService.detail(util.strTOInt(request.getParameter("bno")));
-		mv.addObject("dto", dto);
+		BoardDTO dto = new BoardDTO();
+		dto.setBno(util.strTOInt(request.getParameter("bno")));
+		dto.setM_id((String) session.getAttribute("mid"));//내 글만 수정할 수 있도록 mid도 같이 보냄
+		
+		BoardDTO result = boardService.detail(dto);
+		mv.addObject("dto", result);
 		return mv;
 	}
 	

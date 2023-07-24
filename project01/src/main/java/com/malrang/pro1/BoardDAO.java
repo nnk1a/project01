@@ -20,8 +20,8 @@ public class BoardDAO {
 		return sqlSession.selectList("board.boardList");
 	}
 	
-	public BoardDTO detail(int bno) {
-		return sqlSession.selectOne("board.detail", bno);
+	public BoardDTO detail(BoardDTO dto) {
+		return sqlSession.selectOne("board.detail", dto);
 	}
 
 	public void write(BoardDTO dto) {

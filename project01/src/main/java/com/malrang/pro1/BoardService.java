@@ -21,17 +21,17 @@ public class BoardService {
 		return boardDAO.boardList();
 	}
 	
-	public BoardDTO detail(int bno) {
-		BoardDTO dto = boardDAO.detail(bno);
+	public BoardDTO detail(BoardDTO dto) {
+		BoardDTO result = boardDAO.detail(dto);
 		//ip 중간에 하트 넣어주기 172.30.1.19 -> 172.♡.1.19
-		if (dto.getBip() != null && dto.getBip().indexOf(".") != -1) {
-			String ip = dto.getBip();
+		if (result.getBip() != null && result.getBip().indexOf(".") != -1) {
+			String ip = result.getBip();
 			String[] ipArr = ip.split("\\.");
 			ipArr[1] = "😎";
 			ip = String.join(".", ipArr);
-			dto.setBip(ip);
+			result.setBip(ip);
 		}
-		return dto;
+		return result;
 	}
 
 	public void write(BoardDTO dto) {
