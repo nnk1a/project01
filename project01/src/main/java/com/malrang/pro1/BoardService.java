@@ -17,19 +17,26 @@ public class BoardService {
 	Util util;
 	
 	//board 리스트 불러오는 메소드
-	public List<BoardDTO> boardList() {
-		return boardDAO.boardList();
+	public List<BoardDTO> boardList(PageDTO page) {
+		return boardDAO.boardList(page);
 	}
 	
 	public BoardDTO detail(BoardDTO dto) {
+		//좋아요 수 +1 기능
+		boardDAO.likeUp(dto);
 		BoardDTO result = boardDAO.detail(dto);
-		//ip 중간에 하트 넣어주기 172.30.1.19 -> 172.♡.1.19
-		if (result.getBip() != null && result.getBip().indexOf(".") != -1) {
-			String ip = result.getBip();
-			String[] ipArr = ip.split("\\.");
-			ipArr[1] = "😎";
-			ip = String.join(".", ipArr);
-			result.setBip(ip);
+		//System.out.println(dto);
+		//System.out.println(dto.getBno());
+		//System.out.println(dto.getBip());
+		if (dto != null) { //내 글이 아닐 때 null
+			//ip 중간에 하트 넣어주기 172.30.1.19 -> 172.♡.1.19
+			if (result.getBip() != null && result.getBip().indexOf(".") != -1) {
+				String ip = result.getBip();
+				String[] ipArr = ip.split("\\.");
+				ipArr[1] = "😎";
+				ip = String.join(".", ipArr);
+				result.setBip(ip);
+			}
 		}
 		return result;
 	}
@@ -49,4 +56,12 @@ public class BoardService {
 	public void edit(BoardDTO dto) {
 		boardDAO.edit(dto);
 	}
+
+	public int totalCount() {
+		return boardDAO.totalCount();
+	}
+
+	/*public String reply(BoardDTO dto) {
+		return boardDAO.reply(dto);
+	}*/
 }

@@ -13,7 +13,7 @@
 					<li class="login" onclick="link('login')">login</li>
 				</c:when>
 				<c:otherwise>
-					<li class="name" onclick="link('myInfo')">${sessionScope.mname }(${sessionScope.mid }) 님 반갑습니다</li>
+					<li class="name" onclick="link('myInfo')">${sessionScope.mname }(${sessionScope.mid }) 님</li>
 					<li class="login" onclick="link('logout')">logout</li>
 				</c:otherwise>
 			</c:choose>			

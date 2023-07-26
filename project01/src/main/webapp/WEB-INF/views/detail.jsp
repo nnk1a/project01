@@ -48,11 +48,17 @@ function del() {
 	</div>
 	<br><br>
 	<div class="line"></div>
-	<div class="div-comment">
-		<div class="comment">
-			<input class="reply" type="text" placeholder="댓글을 입력하세요.">
+	<div class="comment">		
+		<form action="./reply" method="post">
+		<c:if test="${sessionScope.mid != null}">
+			${sessionScope.mname} 님
+		</c:if>
+			<input name="reply" class="reply" type="text" placeholder="댓글을 입력하세요.">
 			<button class="input-bt">입력하기</button>
-		</div>
+			<input type="hidden" name="bno" value="${dto.bno }">
+		</form>
+		<table>
+		</table>
 	</div>
 </body>
 </html>

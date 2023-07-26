@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 @Controller
 public class BoardController {
 	// user → Controller → Service → DAO → mybatis → DB
@@ -22,9 +24,32 @@ public class BoardController {
 	private Util util;
 
 	@GetMapping("/board")
-	public String board(Model model) {
+	public String board(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo, Model model) {
 		// Service에서 값 가져오기
-		model.addAttribute("list", boardService.boardList());
+		//페이지네이션인포 → 값 넣기 → DB → jsp
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(pageNo); //현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); //한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); //페이징 리스트의 사이즈
+		//전체 글 수 가져오는 명령문장
+		int totalCount = boardService.totalCount();
+		paginationInfo.setTotalRecordCount(totalCount); //전체 게시물 건 수
+		
+		int firstRecordIndex = paginationInfo.getFirstRecordIndex(); //시작 위치
+		int recordCountPerPage = paginationInfo.getRecordCountPerPage(); //페이지에 게시되는 게시물 건수(10)
+		
+		//System.out.println(firstRecordIndex);
+		//System.out.println(recordCountPerPage);
+		//System.out.println(pageNo);
+		//System.out.println(totalCount);
+		
+		PageDTO page = new PageDTO();
+		page.setFirstRecordIndex(firstRecordIndex);
+		page.setRecordCountPerPage(recordCountPerPage);
+ 
+		model.addAttribute("list", boardService.boardList(page));
+		model.addAttribute("paginationInfo", paginationInfo);
+		System.out.println(util.getIp());
 		return "board";
 	}
 
@@ -63,30 +88,45 @@ public class BoardController {
 			return "redirect:board";
 		} else {
 			return "redirect:/login";
-		}		
+		}
 	}
 	
 	@GetMapping("/delete")
-	public String delete(@RequestParam(value = "bno", required = false, defaultValue = "0") int bno) {
-		System.out.println("bno : " + bno);
-		BoardDTO dto = new BoardDTO();
-		dto.setBno(bno);
-		//dto.setBwrite(null);
-		//추후 로그인을 하면 사용자의 정보도 담아서 보냅니다
-		boardService.delete(dto);
-		return "redirect:board";
+	public String delete(@RequestParam(value = "bno", required = false, defaultValue = "0") int bno, HttpSession session) {
+		System.out.println("삭제 bno : " + bno);
+		//로그인 여부 확인
+		//System.out.println(session.getAttribute("mid"));
+		if (session.getAttribute("mid") != null) {
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(bno);
+			dto.setM_id((String) session.getAttribute("mid"));//본인 아이디만 삭제
+			boardService.delete(dto);
+			return "redirect:board";
+		} else {
+			return "redirect:/login";
+		}
 	}
 	
 	@GetMapping("/edit")
 	public ModelAndView edit(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		ModelAndView mv = new ModelAndView("edit");
-		BoardDTO dto = new BoardDTO();
-		dto.setBno(util.strTOInt(request.getParameter("bno")));
-		dto.setM_id((String) session.getAttribute("mid"));//내 글만 수정할 수 있도록 mid도 같이 보냄
-		
-		BoardDTO result = boardService.detail(dto);
-		mv.addObject("dto", result);
+		ModelAndView mv = new ModelAndView();
+		if (session.getAttribute("mid") != null) {
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(util.strTOInt(request.getParameter("bno")));
+			dto.setM_id((String) session.getAttribute("mid"));//내 글만 수정할 수 있도록 mid도 같이 보냄
+			
+			BoardDTO result = boardService.detail(dto);
+			
+			if (result != null) { //내 글만 수정하기
+				mv.addObject("dto", result);
+				mv.setViewName("edit");				
+			} else { //다른 사람 글이라면 경고창으로 이동
+				mv.setViewName("warning");
+			}
+		} else {
+			mv.setViewName("redirect:/login");
+		}
 		return mv;
 	}
 	
@@ -95,4 +135,26 @@ public class BoardController {
 		boardService.edit(dto);
 		return "redirect:detail?bno=" + dto.getBno();		
 	}
+	
+	@GetMapping("/reply")
+	public String reply(HttpServletRequest request) {
+		System.out.println(util.strTOInt(request.getParameter("bno")));
+		HttpSession session = request.getSession();
+		if (session.getAttribute("mname") != null) {
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(util.strTOInt(request.getParameter("bno")));
+			System.out.println(dto.getBno());
+			return "redirect:board";
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
+	@PostMapping("/reply")
+	public String reply(HttpServletRequest request, Model model) {
+		String reply = request.getParameter("reply");
+		System.out.println(reply);
+		return "redirect:/login";
+	}
+	
 }

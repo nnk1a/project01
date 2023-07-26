@@ -2,7 +2,7 @@ package com.malrang.pro1;
 
 public class BoardDTO {
 	private int bno, blike;
-	private String btitle, m_name, m_id, bcontent, bdate, bip;
+	private String btitle, m_name, m_id, bcontent, bdate, bip, reply;
 	public int getBno() {
 		return bno;
 	}
@@ -51,5 +51,11 @@ public class BoardDTO {
 	}
 	public void setBip(String bip) {
 		this.bip = bip;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
 	}	
 }

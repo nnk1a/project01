@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,11 @@
 <title>board</title>
 <link rel="stylesheet" href="./css/board.css">
 <link rel="stylesheet" href="./css/menu.css">
+<script type="text/javascript">
+function linkPage(pageNo){
+	location.href = "./board?pageNo="+pageNo;
+}	
+</script>
 </head>
 <body>
 <%@ include file="menu.jsp" %>
@@ -21,7 +27,7 @@
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일자</th>
-			<th>좋아요</th>
+			<th>조회수</th>
 		</tr>
 		<c:forEach items="${list }" var="row">
 		<tr onclick="location.href='./detail?bno=${row.bno}'">
@@ -33,6 +39,9 @@
 		</tr>
 		</c:forEach>
 		</table>
+		<div class="page">
+		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
+		</div>
 		</c:when>
 		<c:otherwise>게시글이 없습니다.</c:otherwise>
 	</c:choose>

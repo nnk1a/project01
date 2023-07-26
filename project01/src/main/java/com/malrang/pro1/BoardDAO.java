@@ -1,7 +1,6 @@
 package com.malrang.pro1;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,8 +15,8 @@ public class BoardDAO {
 	@Named("sqlSession")
 	private SqlSession sqlSession;
 	
-	public List<BoardDTO> boardList(){
-		return sqlSession.selectList("board.boardList");
+	public List<BoardDTO> boardList(PageDTO page){
+		return sqlSession.selectList("board.boardList", page);
 	}
 	
 	public BoardDTO detail(BoardDTO dto) {
@@ -35,5 +34,17 @@ public class BoardDAO {
 	public void edit(BoardDTO dto) {
 		sqlSession.update("board.edit", dto);
 	}
+
+	public void likeUp(BoardDTO dto) {
+		sqlSession.update("board.likeUp", dto);
+	}
+
+	public int totalCount() {
+		return sqlSession.selectOne("board.totalCount");
+	}
+
+	/*public String reply(BoardDTO dto) {
+		return sqlSession.selectList("board.reply", dto);
+	}*/
 
 }
