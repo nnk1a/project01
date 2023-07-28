@@ -1,0 +1,51 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+body{
+	font-family: 'Gothic A1', sans-serif;
+}
+.signup{
+	margin: 0 auto;
+	text-align: center;
+	width: 400px;
+	height: 900px;
+	border: 3px solid #FFF8E1;
+	border-radius: 20px;
+}
+.signup2{
+	margin: 0 auto;
+	text-align: left;
+	width: 300px;
+	height: auto;
+	padding-top: 10px;
+}
+button{
+	margin: 5px 0px;
+	padding: 10px;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	border-radius: 20px;
+	font-weight: bold;
+	background-color: #FFF8E1;
+	font-family: 'Gothic A1', sans-serif;
+	width: 300px;
+}
+.signinput{
+	font-family: 'Gothic A1', sans-serif;
+	border-radius: 10px;
+	border: 1px solid #FFE0B2;
+	padding: 7px 5px;
+	margin-top: 5px;
+	width: 300px;
+}
+.gender{
+	margin-top: 5px;
+}
+select{
+	width: 100px;
+	padding: 7px 3px;
+	border: 1px solid #FFE0B2;
+	font-family: 'Gothic A1', sans-serif;
+	border-radius: 10px;
+	margin: 5px 0px 20px 0px;
+}

@@ -1,4 +1,4 @@
-package com.malrang.pro1;
+package com.malrang.login;
 
 public class LoginDTO {
 	private int m_no, m_grade, count;

@@ -1,4 +1,6 @@
-package com.malrang.pro1;
+package com.malrang.login;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -7,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.malrang.util.Util;
 
 @Controller
 public class LoginController {
@@ -17,7 +22,7 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String login() {
-		System.out.println(util.getIp());
+//		System.out.println(util.getIp());
 		return "login";
 	}
 	
@@ -64,5 +69,31 @@ public class LoginController {
 		session.setMaxInactiveInterval(0);//세션 유지시간을 0으로 = 종료시키기
 		session.invalidate();//세션 초기화 = 종료 = 세션의 모든 속성 값을 제거
 		return "redirect:index";
+	}
+	
+	@GetMapping("/signup")
+	public String signup() {
+		return "signup";
+	}
+	
+	@PostMapping("/signup")
+	public String signup(SignupDTO dto) {
+		System.out.println("jsp에서 오는 값 : " + dto.getGender());
+		System.out.println("jsp에서 오는 값 : " + dto.getBirth());
+		int result = loginService.signup(dto);
+		System.out.println(result);
+		if (result == 1) {
+			return "redirect:/login";
+		} else {
+			return "signup";			
+		}
+	}
+	
+	@GetMapping("/members")
+	public ModelAndView members() {
+		ModelAndView mv = new ModelAndView("members");
+		List<SignupDTO> list = loginService.members();
+		mv.addObject("list", list);
+		return mv;		
 	}
 }

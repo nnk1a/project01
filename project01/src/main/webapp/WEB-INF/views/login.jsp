@@ -38,7 +38,7 @@ function check() {
 		<form action="./login" method="post">
 		<div class="id"><input type="text" name="ID" id="ID" required="required" placeholder="ID" onchange="checkID()"></div>
 		<div class="pw"><input type="password" name="PW" id="PW" required="required" placeholder="PW"></div>
-		<div class="bt"><button onclick="return check()">로그인</button><button>회원가입</button></div>
+		<div class="bt"><button onclick="return check()">로그인</button><button onclick="location.href='./signup'">회원가입</button></div>
 		<span id="msg"></span>
 		</form>
 	</div>

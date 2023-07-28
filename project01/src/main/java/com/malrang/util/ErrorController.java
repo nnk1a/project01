@@ -1,4 +1,4 @@
-package com.malrang.pro1;
+package com.malrang.util;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,8 +1,8 @@
-package com.malrang.pro1;
+package com.malrang.board;
 
 public class BoardDTO {
 	private int bno, blike;
-	private String btitle, m_name, m_id, bcontent, bdate, bip, reply;
+	private String btitle, m_name, m_id, bcontent, bdate, bip, reply, uuid;
 	public int getBno() {
 		return bno;
 	}
@@ -57,5 +57,11 @@ public class BoardDTO {
 	}
 	public void setReply(String reply) {
 		this.reply = reply;
+	}
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}	
 }

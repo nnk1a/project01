@@ -1,4 +1,6 @@
-package com.malrang.pro1;
+package com.malrang.board;
+
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.malrang.util.Util;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -81,6 +85,9 @@ public class BoardController {
 			dto.setBcontent(request.getParameter("content"));
 			dto.setM_id((String) session.getAttribute("mid"));
 			dto.setM_name((String) session.getAttribute("mname"));
+			dto.setUuid(UUID.randomUUID().toString());
+			System.out.println(dto.getUuid());
+			System.out.println(dto.getUuid().length());
 
 			// Service → DAO → mybatis → DB로 보내서 저장하기
 			boardService.write(dto);
@@ -140,11 +147,12 @@ public class BoardController {
 	public String reply(HttpServletRequest request) {
 		System.out.println(util.strTOInt(request.getParameter("bno")));
 		HttpSession session = request.getSession();
-		if (session.getAttribute("mname") != null) {
+		System.out.println(session.getAttribute("mid"));
+		if (session.getAttribute("mid") != null) {
 			BoardDTO dto = new BoardDTO();
 			dto.setBno(util.strTOInt(request.getParameter("bno")));
 			System.out.println(dto.getBno());
-			return "redirect:board";
+			return "redirect:/board";
 		} else {
 			return "redirect:/login";
 		}

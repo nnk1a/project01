@@ -1,4 +1,6 @@
-package com.malrang.pro1;
+package com.malrang.login;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,5 +12,13 @@ public class LoginService {
 
 	public LoginDTO login(LoginDTO dto) {
 		return loginDAO.login(dto);
-	}	
+	}
+
+	public int signup(SignupDTO dto) {
+		return loginDAO.signup(dto);
+	}
+
+	public List<SignupDTO> members() {
+		return loginDAO.members();
+	}
 }

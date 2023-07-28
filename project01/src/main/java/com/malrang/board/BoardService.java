@@ -1,12 +1,15 @@
-package com.malrang.pro1;
+package com.malrang.board;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.malrang.util.Util;
 
 @Service("boardService")
 public class BoardService {

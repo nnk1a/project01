@@ -31,7 +31,7 @@ function check() {
 	<div class="write-div">
 		<h1>글쓰기</h1>
 		<form action="./write" method="post" onsubmit="return check()">
-			<input type="text" name="title" id="title">
+			<input type="text" name="title" id="title" placeholder="제목을 입력하세요.">
 			<textarea id="summernote" name="content"></textarea>
 			<button class="btn2" type="submit">글쓰기</button>
 		</form>

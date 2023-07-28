@@ -1,4 +1,4 @@
-package com.malrang.pro1;
+package com.malrang.util;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -4,8 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.malrang.pro1.BoardDTO" alias="boardDTO"/>
-		<typeAlias type="com.malrang.pro1.LoginDTO" alias="loginDTO"/>
-		<typeAlias type="com.malrang.pro1.PageDTO" alias="pageDTO"/>
+		<typeAlias type="com.malrang.board.BoardDTO" alias="boardDTO"/>
+		<typeAlias type="com.malrang.login.LoginDTO" alias="loginDTO"/>
+		<typeAlias type="com.malrang.board.PageDTO" alias="pageDTO"/>
+		<typeAlias type="com.malrang.login.SignupDTO" alias="signupDTO"/>
 	</typeAliases>
 </configuration>
