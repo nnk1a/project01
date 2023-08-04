@@ -7,27 +7,45 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="./css/signup.css">
 <link rel="stylesheet" href="./css/menu.css">
+<script src="./js/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
-function check() {
-	let id = document.getElementById("ID");
-	let pw = document.getElementById("PW");
-	let name = document.getElementById("name");
-	if (id.value.length < 4 || id.value.replaceAll(" ", "").length == 0) {
-		alert("아이디는 4글자 이상 입력하세요.");
-		id.focus();
+$(function() {
+	$("#idCheck").click(function() {
+		let id = $("#ID").val();
+		if(id == "" || id.length < 5){
+			//alert("아이디는 5글자 이상이어야 합니다.");
+			$("#ID").css("border", "1px solid red");
+			$("#resultMSG").text("아이디는 5글자 이상이어야 합니다.");
+			$("#resultMSG").css("color", "red").css("font-weight", "bold");
+			$("#ID").focus();
+		} else {
+			$.ajax({
+				url: "./checkID",
+				type: "post",
+				data: {"id": id}, //checkID?id=poseidon
+				dataType: "json",
+				success: function(data){
+					//alert(data.result);
+					if(data.result == 1){
+						$("#ID").css("border", "1px solid red");
+						$("#ID").focus();
+						$("#resultMSG").text("이미 등록된 아이디입니다.");
+						$("#resultMSG").css("color", "red").css("font-weight", "bold");
+					} else{
+						$("#ID").css("border", "1px solid #FFE0B2");
+						$("#resultMSG").text("사용 가능한 아이디입니다.");
+						$("#resultMSG").css("color", "green");
+					}					
+				},
+				error: function(request, status, error){
+					$("#resultMSG").text("오류가 발생했습니다. 가입할 수 없습니다.");
+					//console.log(request);
+				}
+			});
+		}
 		return false;
-	}
-	if (pw.value.length < 4 || pw.value.replaceAll(" ", "").length == 0) {
-		alert("패스워드는 4글자 이상 입력하세요.");
-		pw.focus();
-		return false;
-	}
-	if (name.value.length < 2 || name.value.replaceAll(" ", "").length == 0) {
-		alert("닉네임은 2글자 이상 입력하세요.");
-		name.focus();
-		return false;
-	}
-}
+	});
+});
 </script>
 </head>
 <body>
@@ -37,7 +55,8 @@ function check() {
 	<h1>singup</h1>
 	<div class="signup2">	
 	아이디<br>
-	<div><input class="signinput" type="text" name="id" id="ID" required="required" placeholder="아이디를 입력하세요."></div>
+	<div><input class="signinput" type="text" name="id" id="ID" required="required" placeholder="아이디를 입력하세요.">
+	<button id="idCheck">중복확인</button><br><span id="resultMSG"></span></div>
 	<br>
 	비밀번호<br>
 	<div><input class="signinput" type="password" name="pw1" id="PW" required="required" placeholder="패스워드를 입력하세요."></div>

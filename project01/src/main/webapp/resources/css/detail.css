@@ -80,9 +80,16 @@ body{
 	margin: 0 auto;
 	width: 900px;
 }
-.comment{
+.line2{
+	text-align: left;
+	border-bottom: 1px solid #BDBDBD;
 	margin: 0 auto;
-	width: 800px;
+	margin-bottom: 10px;
+	width: 700px;
+}
+.commentsList{
+	margin: 0 auto;
+	width: 700px;
 	text-align: center;
 	margin-top: 10px;
 	min-height: 500px;
@@ -92,7 +99,8 @@ body{
 	border-radius: 10px;
 	border: 1px solid #FFE0B2;
 	padding: 7px 5px;
-	width: 600px;
+	width: 525px;
+	height: 25px;
 	font-family: 'Gothic A1', sans-serif;
 	margin-left: 10px;
 }
@@ -105,4 +113,39 @@ body{
 	font-weight: bold;
 	background-color: #FFF8E1;
 	font-family: 'Gothic A1', sans-serif;
+	height: 40px;
+}
+.comment-img{
+	padding-top: 3px;
+	margin-right: 5px;
+}
+.comments{
+	margin: 0 auto;
+	padding-top: 1px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	width: 700px;
+	text-align: left;
+}
+.n{
+	margin-top: 10px;
+	width: 350px;
+}
+.c{
+	padding: 10px;
+}
+.commentBox{
+	text-align: center;
+	margin-top: 0;
+}
+#openComment{
+	padding: 10px;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	border-radius: 20px;
+	font-weight: bold;
+	background-color: #FFF8E1;
+	font-family: 'Gothic A1', sans-serif;
+	margin-bottom: 10px;
 }

@@ -1,6 +1,7 @@
 package com.malrang.board;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -62,6 +63,10 @@ public class BoardService {
 
 	public int totalCount() {
 		return boardDAO.totalCount();
+	}
+
+	public List<Map<Integer, String>> commentsList(int bno) {
+		return boardDAO.commentsList(bno);
 	}
 
 	/*public String reply(BoardDTO dto) {

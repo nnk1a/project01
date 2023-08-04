@@ -32,7 +32,13 @@ function linkPage(pageNo){
 		<c:forEach items="${list }" var="row">
 		<tr onclick="location.href='./detail?bno=${row.bno}'">
 			<td class="td1">${row.bno }</td>
-			<td class="title">${row.btitle }</td>
+			<td class="title">${row.btitle }
+			<small>
+			<c:if test="${row.commentcount ne 0 }">
+				[${row.commentcount }]
+			</c:if>
+			</small>
+			</td> 
 			<td class="td1">${row.m_name }</td>
 			<td class="td2">${row.bdate }</td>
 			<td class="td1">${row.blike }</td>
@@ -47,7 +53,7 @@ function linkPage(pageNo){
 	</c:choose>
 	<!-- 로그인을 했다면 글쓰기 버튼이 보여요 -->	
 	<c:if test="${sessionScope.mname ne null }">
-		<button onclick="location.href='./write'">작성하기</button>
+		<button class="write-bt" onclick="location.href='./write'">작성하기</button>
 	</c:if>
 	</div>
 </body>

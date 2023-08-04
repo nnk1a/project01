@@ -1,5 +1,7 @@
 package com.malrang.board;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -62,6 +64,10 @@ public class BoardController {
 		BoardDTO dto = new BoardDTO();
 		dto.setBno(util.strTOInt(request.getParameter("bno")));
 		BoardDTO result = boardService.detail(dto);
+		if(result.getCommentcount() > 0) {
+			List<Map<Integer, String>> commentsList = boardService.commentsList(dto.getBno());
+			model.addAttribute("commentsList", commentsList);
+		}
 		model.addAttribute("dto", result);
 		return "detail";
 	}
@@ -141,28 +147,6 @@ public class BoardController {
 	public String edit(BoardDTO dto) {
 		boardService.edit(dto);
 		return "redirect:detail?bno=" + dto.getBno();		
-	}
-	
-	@GetMapping("/reply")
-	public String reply(HttpServletRequest request) {
-		System.out.println(util.strTOInt(request.getParameter("bno")));
-		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("mid"));
-		if (session.getAttribute("mid") != null) {
-			BoardDTO dto = new BoardDTO();
-			dto.setBno(util.strTOInt(request.getParameter("bno")));
-			System.out.println(dto.getBno());
-			return "redirect:/board";
-		} else {
-			return "redirect:/login";
-		}
-	}
-	
-	@PostMapping("/reply")
-	public String reply(HttpServletRequest request, Model model) {
-		String reply = request.getParameter("reply");
-		System.out.println(reply);
-		return "redirect:/login";
 	}
 	
 }

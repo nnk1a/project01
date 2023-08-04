@@ -1,7 +1,7 @@
 package com.malrang.board;
 
 public class BoardDTO {
-	private int bno, blike;
+	private int bno, blike, commentcount;
 	private String btitle, m_name, m_id, bcontent, bdate, bip, reply, uuid;
 	public int getBno() {
 		return bno;
@@ -15,6 +15,12 @@ public class BoardDTO {
 	public void setBlike(int blike) {
 		this.blike = blike;
 	}
+	public int getCommentcount() {
+		return commentcount;
+	}
+	public void setCommentcount(int commentcount) {
+		this.commentcount = commentcount;
+	}
 	public String getBtitle() {
 		return btitle;
 	}
@@ -27,7 +33,6 @@ public class BoardDTO {
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
 	}
-	
 	public String getM_id() {
 		return m_id;
 	}
@@ -63,5 +68,5 @@ public class BoardDTO {
 	}
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
-	}	
+	}
 }

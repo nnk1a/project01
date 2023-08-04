@@ -9,12 +9,13 @@ body{
 	height: 250px;
 	border: 3px solid #FFF8E1;
 	border-radius: 20px;
+	text-align: center;
 }
 h1{
 	text-align: center;
 	margin-bottom: 30px;
 }
-.id, .pw{
+.idDiv, .pwDiv{
 	text-align: center;
 	font-family: 'Gothic A1', sans-serif;
 	margin: 10px;

@@ -44,7 +44,7 @@ button{
 	padding: 10px;
 	border: 0;
 	outline: none;
-	float: right;
+	float: left;
 	cursor: pointer;
 	border-radius: 20px;
 	font-weight: bold;
@@ -80,4 +80,7 @@ strong{
 	padding: 4px 9px;
 	color: #424242;
 	margin: 1px;
+}
+small{
+	color: #FBC02D;
 }

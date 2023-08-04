@@ -1,6 +1,7 @@
 package com.malrang.board;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,7 +29,7 @@ public class BoardDAO {
 	}
 
 	public void delete(BoardDTO dto) {
-		sqlSession.delete("board.delete", dto);
+		sqlSession.update("board.delete", dto);
 	}
 
 	public void edit(BoardDTO dto) {
@@ -43,8 +44,8 @@ public class BoardDAO {
 		return sqlSession.selectOne("board.totalCount");
 	}
 
-	/*public String reply(BoardDTO dto) {
-		return sqlSession.selectList("board.reply", dto);
-	}*/
+	public List<Map<Integer, String>> commentsList(int bno) {
+		return sqlSession.selectList("board.commentsList", bno);
+	}
 
 }

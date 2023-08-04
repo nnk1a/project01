@@ -8,6 +8,7 @@
 <title>detail</title>
 <link rel="stylesheet" href="./css/detail.css">
 <link rel="stylesheet" href="./css/menu.css">
+<script src="./js/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
 function edit() {
 	if(confirm("수정하시겠습니까?")){
@@ -22,6 +23,13 @@ function del() {
 		location.href="./delete?bno=${dto.bno }";
 	}
 }
+$(function() {
+	$(".commentBox").hide();
+	$("#openComment").click(function() {
+		$(".commentBox").show('slow');
+		$("#openComment").remove();
+	});
+});
 </script>
 </head>
 <body>
@@ -48,17 +56,38 @@ function del() {
 	</div>
 	<br><br>
 	<div class="line"></div>
-	<div class="comment">		
-		<form action="./reply" method="post">
+	<div class="commentsList">
+	<div class="line2"><img class="comment-img" alt="" src="./img/comment.png">댓글 <small>[${fn:length(commentsList)}]</small></div>
+	<c:choose>
+		<c:when test="${fn:length(commentsList) gt 0}">
+		<div class="comments">
+		<c:forEach items="${commentsList }" var="c">
+			<div class="Box">
+			<div>
+				<div class="n"><b>${c.m_name }</b>  <small>(${c.c_date })</small></div>
+				<!-- <div class="delete">삭제</div> -->
+			</div>
+				<div class="c">${c.c_comment }</div>
+			</div>
+		</c:forEach>
+		</div>
+		</c:when>
+		<c:otherwise>
+		<div><h3>댓글이 없습니다.</h3></div>
+		</c:otherwise>
+	</c:choose>	
+	<div class="line2"></div>
+		<form action="./comment" method="post">
 		<c:if test="${sessionScope.mid != null}">
-			${sessionScope.mname} 님
-		</c:if>
-			<input name="reply" class="reply" type="text" placeholder="댓글을 입력하세요.">
-			<button class="input-bt">입력하기</button>
+		<button type="button" id="openComment">댓글창 열기</button>
+		<div class="commentBox">
+			<b>${sessionScope.mname}</b> 님
+			<input name="comment" id="commenttextarea" class="reply" placeholder="댓글을 입력하세요."></input>
+			<button type="submit" id="comment" class="input-bt">입력하기</button>
 			<input type="hidden" name="bno" value="${dto.bno }">
-		</form>
-		<table>
-		</table>
+		</div>
+		</c:if>
+		</form>	
 	</div>
 </body>
 </html>
