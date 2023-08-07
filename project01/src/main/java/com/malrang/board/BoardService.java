@@ -69,7 +69,7 @@ public class BoardService {
 		return boardDAO.commentsList(bno);
 	}
 
-	/*public String reply(BoardDTO dto) {
-		return boardDAO.reply(dto);
-	}*/
+	public int cdel(Map<String, Object> map) {
+		return boardDAO.cdel(map);
+	}
 }
